@@ -7,6 +7,6 @@ class Product
   end
 
   def to_s
-    "Id: #{self.id}, \n Nome: #{self.name}, \n Preço: #{self.price}"
+    "Id Produto: #{self.id}, \n Nome: #{self.name}, \n Preço: #{self.price}"
   end
 end

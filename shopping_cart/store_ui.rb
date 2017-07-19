@@ -12,6 +12,10 @@ class StoreUI
               2  - Pesquisar Produto
               3  - Excluir Produto
               4  - Listar Produtos
+              5  - Comprar Produto
+              6  - Listar Carrinho de compra
+              7  - Finalizar Compra
+              8  - Listar pedidos
               10 - Sair
             MENU
     @books = []
@@ -29,7 +33,7 @@ class StoreUI
 
   def list_products
     products = @product_crud.list
-    products.each { |product| puts product}
+    products.each { |product| puts product }
 
     if products.empty?
       puts "Lista de produtos vazia"
@@ -39,7 +43,7 @@ class StoreUI
   def search_by(name)
     products = @product_crud.search_by(name)
 
-    products.each { |product| puts product}
+    products.each { |product| puts product }
 
     if products.empty?
       puts "Não foi encontrado produto com o nome digitado"
@@ -48,6 +52,30 @@ class StoreUI
 
   def delete_by(id)
     @product_crud.delete_by(id)
+  end
+
+  def buy_product(id)
+    product = @product_crud.search_by(id)
+
+    @order_crud.add_product(product[0])
+  end
+
+  def list_products_cart
+    products = @order_crud.list_products
+
+    products.each { |product| puts product }
+
+    if products.empty?
+      puts "Não há produtos no carrinho"
+    end
+  end
+
+  def finish_order
+    @order_crud.finish_order
+  end
+
+  def list_orders
+    @order_crud.list
   end
 
 

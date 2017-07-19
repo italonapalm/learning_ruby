@@ -26,13 +26,12 @@ class ProductCRUD
     @list_products = []
 
     @products.each do |product|
-      if product.name == name
+      if product.name == name || product.id == name.to_i
         @list_products << product
       end
     end
 
     @list_products
-
   end
 
   def delete_by(id)
